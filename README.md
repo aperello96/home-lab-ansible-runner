@@ -1,2 +1,2 @@
 # home-lab-ansible-runner
- This repo includes all tools needed
+ This repo builds an execution environment and push it to docker hub

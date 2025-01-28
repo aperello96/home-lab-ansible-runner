@@ -1,0 +1,2 @@
+requests==2.32.3
+Pyvmomi==8.0.3.0.1
