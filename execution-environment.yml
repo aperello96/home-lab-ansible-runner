@@ -12,30 +12,28 @@ dependencies:
   galaxy: requirements.yml
   python: requirements.txt
   system:
-    - iputils [platform:rpm]
-    - genisoimage [platform:rpm]
-  exclude:
-    python:
-      - docker
-    system:
-      - python3-Cython
+    - iputils-ping [platform:deb]
+    - genisoimage [platform:deb]
+  # exclude:
+  #   python:
+  #     - docker
 
 images:
   base_image:
-    name: docker.io/redhat/ubi9:latest
+    name: ubuntu:latest
 
-# Custom package manager path for the RHEL based images
+# Custom package manager path for the Ubuntu based images
 # options:
-#  package_manager_path: /usr/bin/microdnf
+#  package_manager_path: /usr/bin/apt-get
 
-      #additional_build_files:
-  #    - src: files/ansible.cfg
-  #      dest: configs
+# additional_build_files:
+#   - src: files/ansible.cfg
+#     dest: configs
 
 additional_build_steps:
   prepend_base:
     - RUN echo This is a prepend base command!
-    - RUN yum install -y git
+    - RUN apt-get update && apt-get install -y git
 
   prepend_final: |
     RUN whoami
