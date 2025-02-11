@@ -13,6 +13,7 @@ dependencies:
   python: requirements.txt
   system:
     - iputils [platform:rpm]
+    - genisoimage [platform:rpm]
   exclude:
     python:
       - docker
