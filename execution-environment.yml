@@ -12,28 +12,33 @@ dependencies:
   galaxy: requirements.yml
   python: requirements.txt
   system:
-    - iputils-ping [platform:deb]
-    - genisoimage [platform:deb]
-  # exclude:
-  #   python:
-  #     - docker
+    - iputils [platform:rpm]
+  exclude:
+    python:
+      - docker
+    system:
+      - python3-Cython
 
 images:
   base_image:
-    name: ubuntu:latest
+    name: docker.io/redhat/ubi9:latest
 
-# Custom package manager path for the Ubuntu based images
+# Custom package manager path for the RHEL based images
 # options:
-#  package_manager_path: /usr/bin/apt-get
+#  package_manager_path: /usr/bin/microdnf
 
-# additional_build_files:
-#   - src: files/ansible.cfg
-#     dest: configs
+      #additional_build_files:
+  #    - src: files/ansible.cfg
+  #      dest: configs
 
 additional_build_steps:
   prepend_base:
     - RUN echo This is a prepend base command!
-    - RUN apt-get update && apt-get install -y git
+    - RUN yum install -y git
+    - RUN curl -O https://www.rpmfind.net/linux/epel/9/Everything/x86_64/Packages/g/genisoimage-1.1.11-48.el9.x86_64.rpm
+    - RUN curl -O https://www.rpmfind.net/linux/epel/9/Everything/x86_64/Packages/l/libusal-1.1.11-48.el9.x86_64.rpm
+    - RUN rpm -i libusal-1.1.11-48.el9.x86_64.rpm
+    - RUN rpm -i genisoimage-1.1.11-48.el9.x86_64.rpm
 
   prepend_final: |
     RUN whoami
