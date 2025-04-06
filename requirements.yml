@@ -1,5 +1,7 @@
 ---
 collections:
+  - ansible.utils
+  - kubernetes.core
   - community.vmware
   - community.hashi_vault
   - community.general
