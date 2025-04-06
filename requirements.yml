@@ -2,3 +2,4 @@
 collections:
   - community.vmware
   - community.hashi_vault
+  - community.general
